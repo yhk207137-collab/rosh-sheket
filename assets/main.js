@@ -189,6 +189,47 @@
     });
   }
 
+  /* The opening screen answers the pointer in depth: the ring tilts and turns, its light follows, layers drift */
+  if (stick && !reduced && window.matchMedia('(hover: hover) and (min-width: 961px)').matches) {
+    (function () {
+      var glint = $('.glint', stick);
+      var tx = 0, ty = 0, x = 0, y = 0, angle = 0, targetAngle = 0, running = false;
+      var s = stick.style;
+
+      function frame() {
+        x += (tx - x) * .08;
+        y += (ty - y) * .08;
+        var d = ((targetAngle - angle + 540) % 360) - 180;
+        angle += d * .12;
+        s.setProperty('--tx', (-y * 14) + 'deg');
+        s.setProperty('--ty', (x * 14) + 'deg');
+        s.setProperty('--mr', (x * 50) + 'deg');
+        s.setProperty('--px', (-x * 26) + 'px');
+        s.setProperty('--pq', (-y * 18) + 'px');
+        s.setProperty('--cx2', (x * 14) + 'px');
+        s.setProperty('--cy2', (y * 10) + 'px');
+        s.setProperty('--ox', (-x * 60) + 'px');
+        s.setProperty('--oy', (-y * 40) + 'px');
+        glint.style.setProperty('--glint', angle + 'deg');
+        if (Math.abs(tx - x) + Math.abs(ty - y) + Math.abs(d) > .02) requestAnimationFrame(frame);
+        else running = false;
+      }
+      function go() { if (!running) { running = true; requestAnimationFrame(frame); } }
+
+      stick.addEventListener('pointermove', function (e) {
+        var q = stick.getBoundingClientRect();
+        tx = ((e.clientX - q.left) / q.width - .5) * 2;
+        ty = ((e.clientY - q.top) / q.height - .5) * 2;
+        var ring = $('.hero-ring', stick).getBoundingClientRect();
+        // Light band sits at 84% of the turn: place it facing the pointer
+        targetAngle = Math.atan2(e.clientY - (ring.top + ring.height / 2), e.clientX - (ring.left + ring.width / 2)) * 180 / Math.PI + 90 - 302 - (x * 50);
+        glint.classList.add('follow');
+        go();
+      });
+      stick.addEventListener('pointerleave', function () { tx = 0; ty = 0; go(); });
+    })();
+  }
+
   function requestTick() { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }
   window.addEventListener('scroll', requestTick, { passive: true });
   window.addEventListener('resize', requestTick);
