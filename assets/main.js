@@ -115,8 +115,8 @@
     // On phones the circle sits low, so at rest the photo is shifted down to show the room inside it
     s.setProperty('--hy', (narrow ? (1 - open) * vh * .3 : 0) + 'px');
     s.setProperty('--shade', clamp((p - .45) * 2.2, 0, 1));
-    // The ring's inner edge sits on the gold circle (262/414 of its radius)
-    s.setProperty('--ring', (R0 / (262 / 414)) * 2 + 'px');
+    // The ring's inner edge sits on the gold circle (342/562 of its radius)
+    s.setProperty('--ring', (R0 / (342 / 562)) * 2 + 'px');
     s.setProperty('--rx', x + 'px');
     s.setProperty('--ry', y + 'px');
     s.setProperty('--rs', r / R0);
