@@ -282,7 +282,8 @@ dialog .btn { margin-top: 18px; }
   .menu-btn { display: block; }
   .nav { position: fixed; inset: 0; z-index: -1; background: #fff; flex-direction: column; justify-content: center; gap: 22px; font-size: 26px; opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; }
   .nav.open { opacity: 1; visibility: visible; }
-  .hero-copy { align-self: flex-start; padding-top: 100px; }
+  .hero-copy { align-self: flex-start; padding-top: 88px; }
+  .hero h1 { margin-bottom: 12px; }
   .hero-copy .in { max-width: none; gap: 20px; }
   .hero-actions .btn-line { display: none; }
   .hero-after { bottom: 18vh; }
