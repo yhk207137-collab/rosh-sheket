@@ -168,6 +168,24 @@
       scrollRot.forEach(function (el) { el.style.rotate = (window.scrollY * -.05) + 'deg'; });
     }
   }
+  /* The silver highlight follows the pointer */
+  var silver = $$('.silver');
+  if (!reduced && window.matchMedia('(hover: hover)').matches) {
+    silver.forEach(function (el) {
+      var pending = null;
+      el.addEventListener('pointermove', function (e) {
+        var q = el.getBoundingClientRect();
+        var first = pending === null;
+        pending = [e.clientX - q.left, e.clientY - q.top];
+        if (first) requestAnimationFrame(function () {
+          el.style.setProperty('--mx', pending[0] + 'px');
+          el.style.setProperty('--my', pending[1] + 'px');
+          pending = null;
+        });
+      });
+    });
+  }
+
   function requestTick() { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }
   window.addEventListener('scroll', requestTick, { passive: true });
   window.addEventListener('resize', requestTick);
