@@ -92,7 +92,6 @@
   var parallax = $$('[data-parallax]');
   var head = $('.site-head');
   var bar = $('.call-bar');
-  var scrollRot = $$('[data-scroll-rot]');
   var ticking = false;
 
   function heroScene(vw, vh) {
@@ -123,7 +122,6 @@
     s.setProperty('--rx', x + 'px');
     s.setProperty('--ry', y + 'px');
     s.setProperty('--rs', r / R0);
-    s.setProperty('--rot', (-p * 120) + 'deg');
     s.setProperty('--ro', clamp(1 - p * 2.4, 0, 1));
     s.setProperty('--co', clamp(1 - p * 3.2, 0, 1));
     s.setProperty('--cy', (-p * 90) + 'px');
@@ -168,7 +166,6 @@
         var t = (q.top + q.height / 2 - vh / 2) / vh;
         el.style.setProperty('--py', (-8 + t * -8) + '%');
       });
-      scrollRot.forEach(function (el) { el.style.rotate = (window.scrollY * -.05) + 'deg'; });
     }
   }
   /* The silver highlight follows the pointer */
