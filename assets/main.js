@@ -145,7 +145,7 @@
     if (rows.length && !hoverLock) {
       var best = 0, dist = Infinity;
       rows.forEach(function (r, i) {
-        var q = r.getBoundingClientRect(), d = Math.abs(q.top + q.height / 2 - vh * .5);
+        var q = r.getBoundingClientRect(), d = Math.abs(q.top + q.height / 2 - vh * (vw <= 960 ? .66 : .5));
         if (d < dist) { dist = d; best = i; }
       });
       activate(best);

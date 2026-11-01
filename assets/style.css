@@ -22,7 +22,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; overflow-x: clip; }
 body {
   margin: 0;
   background: var(--paper);
@@ -170,7 +170,6 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.08; t
 .svc-row small { color: var(--gold-deep); font-weight: 600; font-size: .86em; }
 .svc-row.on h3, .svc-row a:hover h3 { color: var(--ink); }
 .svc-row.on a { padding-inline-start: 22px; }
-.svc-row img { display: none; }
 .svc-view { position: sticky; top: 14vh; min-width: 0; }
 .orb { position: relative; width: min(100%, 68vh); aspect-ratio: 1; margin-inline: auto; }
 .orb-ring { position: absolute; inset: 0; }
@@ -180,7 +179,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.08; t
 .orb-photos img.on { opacity: 1; transform: none; }
 
 /* Process */
-.navy { background: var(--navy); color: var(--on-navy); position: relative; overflow: hidden; }
+.navy { background: var(--navy); color: var(--on-navy); position: relative; overflow: hidden; contain: paint; }
 .navy h2, .navy h3 { color: #fff; }
 .navy .deco { position: absolute; width: min(80vw, 1000px); left: -22vw; bottom: -26vw; opacity: .16; pointer-events: none; }
 .steps { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(24px, 3vw, 56px); margin-top: clamp(60px, 8vw, 120px); padding-top: 42px; }
@@ -289,11 +288,13 @@ dialog .btn { margin-top: 18px; }
   .hero-after { bottom: 18vh; }
   .stats { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .stat { grid-template-columns: minmax(0, .8fr) minmax(0, 1fr); align-items: center; }
-  .svc { grid-template-columns: minmax(0, 1fr); }
-  .svc-view { display: none; }
-  .svc-row img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 14px; margin-bottom: 8px; }
-  .svc-row h3 { color: var(--ink); }
+  /* On phones the ring stays in view and changes photo as the rows scroll past it */
+  .svc { display: block; }
+  .svc-view { position: sticky; top: calc(72px + env(safe-area-inset-top, 0px)); z-index: 2; padding-block: 14px 26px; background: linear-gradient(var(--paper) 86%, transparent); }
+  .svc-view .orb { width: min(62vw, 31vh); }
+  .svc-row a { padding-block: 26px; }
   .svc-row.on a { padding-inline-start: 0; }
+  .page-hero .deco { display: none; }
   .steps { grid-template-columns: minmax(0, 1fr); padding-top: 0; padding-inline-start: 34px; gap: 44px; }
   .steps::before, .steps::after { inset: 0 auto 0 auto; right: 7px; top: 0; width: 1px; height: 100%; }
   .steps::after { transform: scaleY(var(--p, 0)); transform-origin: top; }
