@@ -105,8 +105,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.08; t
 .silver::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(circle 46vmax at var(--mx, 72%) var(--my, 30%), rgba(255, 255, 255, .85), transparent 70%), var(--grain); background-size: auto, 700px 700px; }
 .silver-orn { position: absolute; z-index: -1; width: 128vmin; aspect-ratio: 1; right: -30vmin; top: 50%; translate: 0 -50%; background: #66748c; opacity: .17; -webkit-mask: url(ornament.webp) center / 100% 100% no-repeat; mask: url(ornament.webp) center / 100% 100% no-repeat; animation: spin 180s linear infinite reverse; pointer-events: none; }
 .hero-media { position: absolute; inset: 0; clip-path: circle(var(--r, 26vh) at var(--x, 26%) var(--y, 54%)); }
-.hero-media img { width: 100%; height: 100%; object-fit: cover; transform: translateY(var(--hy, 0)) scale(var(--zoom, 1.18)); }
-.hero-shade { position: absolute; inset: 0; background: rgba(0, 11, 37, .62); opacity: var(--shade, 0); }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; transform: translateY(var(--hy, 0)) scale(var(--zoom, 1.18)); filter: brightness(var(--lift, 1)); }
+.hero-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 11, 37, .62) 0%, rgba(0, 11, 37, .38) 24%, transparent 44%); opacity: var(--shade, 0); }
 .hero-ring { position: absolute; left: 0; top: 0; width: var(--ring, 66vh); aspect-ratio: 1; transform: translate(var(--rx, 0), var(--ry, 0)) translate(-50%, -50%) scale(var(--rs, 1)) rotate(var(--rot, 0deg)); opacity: var(--ro, 1); pointer-events: none; will-change: transform; }
 .spin { position: absolute; inset: 0; animation: spin 120s linear infinite; }
 .hero-ring img { width: 100%; height: 100%; filter: brightness(.86) saturate(1.1); }
@@ -121,7 +121,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.08; t
 .hero h1 span + span { animation-delay: .14s; color: var(--gold-deep); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 .hero-after { position: absolute; z-index: 3; inset: auto 0 12vh; color: #fff; opacity: var(--ao, 0); transform: translateY(var(--ay, 30px)); pointer-events: none; }
-.hero-after p { font: 500 clamp(32px, 5vw, 84px)/1.12 var(--display); max-width: 16em; text-wrap: balance; }
+.hero-after p { font: 500 clamp(32px, 5vw, 84px)/1.12 var(--display); max-width: 16em; text-wrap: balance; text-shadow: 0 2px 18px rgba(0, 11, 37, .75); }
 
 @property --glint { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 @keyframes glint { to { --glint: 360deg; } }

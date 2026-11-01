@@ -117,6 +117,7 @@
     s.setProperty('--zoom', zoom);
         s.setProperty('--hy', (narrow ? vh * (1 - zoom) / 2 : 0) + 'px');
     s.setProperty('--shade', clamp((p - .45) * 2.2, 0, 1));
+    s.setProperty('--lift', 1 + .2 * open);
     // The ring's inner edge sits on the gold circle (342/562 of its radius)
     s.setProperty('--ring', (R0 / (342 / 562)) * 2 + 'px');
     s.setProperty('--rx', x + 'px');
