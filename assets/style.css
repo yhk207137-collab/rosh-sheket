@@ -284,6 +284,8 @@ dialog .btn { margin-top: 18px; }
   .hero-copy { align-self: flex-start; padding-top: 88px; }
   .hero h1 { margin-bottom: 12px; }
   .hero-copy .in { max-width: none; gap: 20px; }
+  /* The whole photo fits inside the small circle at rest, then grows to fill the screen */
+  .hero-media img { position: absolute; left: 50%; top: 0; width: auto; max-width: none; height: 100%; aspect-ratio: 3 / 2; translate: -50% 0; }
   .hero-actions .btn-line { display: none; }
   .hero-after { bottom: 18vh; }
   .stats { grid-template-columns: minmax(0, 1fr); gap: 20px; }

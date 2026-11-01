@@ -111,9 +111,11 @@
     s.setProperty('--r', r + 'px');
     s.setProperty('--x', x + 'px');
     s.setProperty('--y', y + 'px');
-    s.setProperty('--zoom', 1.18 - .18 * open);
-    // On phones the circle sits low, so at rest the photo is shifted down to show the room inside it
-    s.setProperty('--hy', (narrow ? (1 - open) * vh * .3 : 0) + 'px');
+    var z0 = narrow ? (R0 * 2 * 1.45) / vh : 1.18;
+    // On phones the photo reaches full size early and stays anchored to the bottom, so the opening circle never shows its edge
+    var zoom = narrow ? z0 + (1 - z0) * Math.min(1, open / .3) : z0 + (1 - z0) * open;
+    s.setProperty('--zoom', zoom);
+        s.setProperty('--hy', (narrow ? vh * (1 - zoom) / 2 : 0) + 'px');
     s.setProperty('--shade', clamp((p - .45) * 2.2, 0, 1));
     // The ring's inner edge sits on the gold circle (342/562 of its radius)
     s.setProperty('--ring', (R0 / (342 / 562)) * 2 + 'px');
