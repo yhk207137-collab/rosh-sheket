@@ -109,6 +109,9 @@
     var y = y0 + (vh / 2 - y0) * open;
     var s = stick.style;
     s.setProperty('--r', r + 'px');
+    s.setProperty('--fw', R0 * 2 + 'px');
+    s.setProperty('--fs', r / R0);
+    s.setProperty('--fo', clamp(1 - open / .08, 0, 1));
     s.setProperty('--x', x + 'px');
     s.setProperty('--y', y + 'px');
     var z0 = narrow ? (R0 * 2 * 1.45) / vh : 1.18;
