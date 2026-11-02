@@ -96,9 +96,9 @@
 
   function heroScene(vw, vh) {
     var narrow = vw <= 960;
-    var R0 = narrow ? Math.min(vw * .28, vh * .16) : Math.min(vw * .18, vh * .28);
+    var R0 = narrow ? Math.min(vw * .38, vh * .175) : Math.min(vw * .18, vh * .28);
     var x0 = narrow ? vw * .5 : vw * .26;
-    var y0 = narrow ? vh * .76 : vh * .54;
+    var y0 = narrow ? vh * .77 : vh * .54;
     var span = hero.offsetHeight - vh;
     var p = reduced ? 0 : clamp(window.scrollY / Math.max(1, span), 0, 1);
     var open = p * p * (3 - 2 * p);
@@ -133,6 +133,14 @@
     ticking = false;
     var vw = document.documentElement.clientWidth, vh = window.innerHeight;
     if (hero) heroScene(vw, vh);
+    document.documentElement.style.setProperty('--sy', window.scrollY + 'px');
+    if (vw <= 960 && !reduced) rows.forEach(function (row) {
+      var q = row.getBoundingClientRect();
+      var o = clamp((vh * .98 - q.top) / (vh * .6), 0, 1);
+      var link = row.firstElementChild;
+      link.style.setProperty('--c', (24 + o * o * 56) + '%');
+      link.style.setProperty('--cz', 1.22 - .22 * o);
+    });
     if (head) head.classList.toggle('is-stuck', window.scrollY > 30);
     if (bar) bar.classList.toggle('show', window.scrollY > vh * .6);
 
